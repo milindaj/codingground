@@ -1,6 +1,6 @@
-inputData = "6#3,4,5,7,8,9#3,4,5,7,8,5"
+#inputData = "6#3,4,5,7,8,9#3,4,5,7,8,5"
 #inputData = "3#1,3,2#4,6,5"
-#inputData = "7#3,4,5,7,8,9,3#3,4,5,7,8,5,8"
+inputData = "7#3,4,5,7,8,9,3#3,4,5,7,8,5,8"
 
 split = inputData.split('#')
 num = int(split[0])
@@ -29,34 +29,39 @@ print(nRange)
 fullList = range(1, num+1) # define the list
 finalTeam1 = []
 finalTeam2 = []
-
 tempList = []
-for i in range(loopStart, loopEnd):
-    roleList = []
-    if num > 3:
-        roleList.append(1)
-        roleList.append(i)
-        
-    #print("in i *** i = " + str(i))
-    for j in range(i+1, num+1): # 3 - 6
-        #print("in j *** j = " + str(j))
-        for n in range(1,nRange+1): # 1 - 1
-            #print("in n *** n = " + str(n))
-            #for j in range(i+1,num + 1):
-            tempTeam1 = []
-            tempTeam1 = roleList[:]
-            tempTeam1.append(j)
-        
-        finalTeam1.append(tempTeam1)
-        fullList = range(1, num+1)
-        tempTeam2 = [x for x in fullList if x not in tempTeam1]
 
-        #print("tempTeam2")
-        #print(tempTeam2)
-        finalTeam2.append(tempTeam2)
-        tempTeam1 = []
-        tempTeam2 = []
-        #print("printed")
+if num > 3:
+    
+    for i in range(loopStart, loopEnd):
+        roleList = []
+        if num > 3:
+            roleList.append(1)
+            roleList.append(i)
+            
+        #print("in i *** i = " + str(i))
+        for j in range(i+1, num+1): # 3 - 6
+            #print("in j *** j = " + str(j))
+            for n in range(1,nRange+1): # 1 - 1
+                #print("in n *** n = " + str(n))
+                #for j in range(i+1,num + 1):
+                tempTeam1 = []
+                tempTeam1 = roleList[:]
+                tempTeam1.append(j)
+            
+            finalTeam1.append(tempTeam1)
+            fullList = range(1, num+1)
+            tempTeam2 = [x for x in fullList if x not in tempTeam1]
+    
+            #print("tempTeam2")
+            #print(tempTeam2)
+            finalTeam2.append(tempTeam2)
+            tempTeam1 = []
+            tempTeam2 = []
+            #print("printed")
+else:
+    finalTeam1 = [[1,2], [1,3], [2,3]]
+    finalTeam2 = [[3], [2], [1]]    
 
 print("FINAL team 1")
 print(finalTeam1)
@@ -122,5 +127,3 @@ else:
 print("Lowest score possible is : " + str(finalMin))
 print("FINAL TEAMS")
 print(finalTeam)
-
-
