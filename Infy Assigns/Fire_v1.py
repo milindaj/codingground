@@ -1,4 +1,10 @@
-inputData = "6#3,4,5,7,8,9#3,4,5,7,8,9"
+#!/usr/bin/python
+
+#!/usr/bin/python
+
+#!/usr/bin/python
+
+inputData = "6#3,4,5,7,8,9#3,4,5,7,8,5"
 
 split = inputData.split('#')
 num = int(split[0])
@@ -9,9 +15,9 @@ loopEnd = (num - (num/2 - 2))
 nRange = num/2 -1
 #print(inputData)
 #print("\n")
-#print(mins)
+print(mins)
 #print("\n")
-#print(maxs)
+print(maxs)
 print(num)
 print(loopEnd)
 print(nRange)
@@ -52,26 +58,43 @@ print(finalTeam1)
 print("FINAL team 2")
 print(finalTeam2)
 
-tempScoreDiff = 0
-scoreList = []
+tempScoreDiff1 = 0
+tempScoreDiff2 = 0
+scoreList1 = []
+scoreList2 = []
 
-for n in range(1, len(finalList1)+1):
-    tempTeam1Score = 0
-    tempTeam2Score = 0
+for n in range(0, len(finalTeam1)):
+    tempTeam1ScoreHigh = 0
+    tempTeam1ScoreLow = 0
+    tempTeam2ScoreHigh = 0
+    tempTeam2ScoreLow = 0
 
-    for x in finalList1:
-        tempTeam1Score = tempTeam1Score + maxs[x]
+    t1 = finalTeam1[n]
+    for x in t1:
+        print("# " + str(x) + " score = " + str(maxs[x-1]))
+        tempTeam1ScoreHigh = tempTeam1ScoreHigh + maxs[x-1]
+        tempTeam1ScoreLow = tempTeam1ScoreLow + mins[x-1]        
 
-    for x in finalList2:
-        tempTeam2Score = tempTeam2Score + maxs[x]        
+    print("tempTeam1ScoreHigh  " + str(tempTeam1ScoreHigh))
+    t2 = finalTeam2[n]
+    for y in t2:
+        print("# " + str(y) + " score2 = " + str(mins[y-1]))
+        tempTeam2ScoreHigh = tempTeam2ScoreHigh + maxs[y-1]
+        tempTeam2ScoreLow = tempTeam2ScoreLow + mins[y-1]      
     
-    tempScoreDiff = abs(tempTeam1Score - tempTeam2Score)
-    scoreList.append(tempScoreDiff)
+    print("tempTeam2ScoreLow  " + str(tempTeam2ScoreLow))
     
-bestScorePos = scoreList.index(min(scoreList))
+    tempScoreDiff1 = abs(tempTeam1ScoreHigh - tempTeam2ScoreLow)
+    tempScoreDiff2 = abs(tempTeam2ScoreHigh - tempTeam1ScoreLow)
+    scoreList1.append(tempScoreDiff1)
+    scoreList2.append(tempScoreDiff2)
+    
+#bestScorePos = scoreList.index(min(scoreList))
 
-print("And the winning team combination is ...")
-print(finalTeam1[bestScorePos])
-print(finalTeam2[bestScorePos])
-
-
+#print("And the winning team combination is ...")
+#print(finalTeam1[bestScorePos])
+#print(finalTeam2[bestScorePos])
+print(scoreList1)
+print(scoreList2)
+print(min(scoreList1))
+print(min(scoreList2))
